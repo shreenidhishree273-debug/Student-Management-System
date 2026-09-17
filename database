@@ -1,0 +1,54 @@
+
+-- Student Management System Database
+
+-- Create database (SQLite creates the file automatically)
+
+-- Create students table
+CREATE TABLE IF NOT EXISTS students (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    rollNo TEXT UNIQUE NOT NULL,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    department TEXT NOT NULL,
+    year TEXT NOT NULL,
+    gender TEXT NOT NULL
+);
+
+-- Insert sample student records
+INSERT INTO students
+(rollNo, name, email, phone, department, year, gender)
+VALUES
+('101', 'Shreenidhi', 'shree@example.com',
+ '9876543210', 'CSE-AIML', '2nd Year', 'Female');
+
+INSERT INTO students
+(rollNo, name, email, phone, department, year, gender)
+VALUES
+('102', 'Arun', 'arun@example.com',
+ '9876543211', 'CSE', '2nd Year', 'Male');
+
+-- Display all student records
+SELECT * FROM students;
+
+-- Search student by name
+SELECT * FROM students
+WHERE name LIKE '%Shree%';
+
+-- Update student details
+UPDATE students
+SET email = 'newemail@example.com'
+WHERE rollNo = '101';
+
+-- Delete a student record
+DELETE FROM students
+WHERE rollNo = '102';
+
+-- Count total students
+SELECT COUNT(*) AS total_students
+FROM students;
+
+-- Count students by department
+SELECT department, COUNT(*) AS total
+FROM students
+GROUP BY department;
